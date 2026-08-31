@@ -4,7 +4,7 @@ const path = require('path');
 const express = require('express');
 const cors = require('cors');
 
-require('./db/database'); // ensures tables exist on boot
+require('./database'); // ensures tables exist on boot
 
 const authRoutes = require('./routes/auth');
 const challengeRoutes = require('./routes/challenges');
