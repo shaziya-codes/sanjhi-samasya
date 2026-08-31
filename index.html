@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sanjhi Samasya — Crowdsourced Solutions for Jharkhand</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header>
+  <div class="nav wrap">
+    <div class="brand">
+      <svg width="30" height="30" viewBox="0 0 40 40" fill="none">
+        <circle cx="20" cy="20" r="19" stroke="#A6472A" stroke-width="1.5"/>
+        <circle cx="12" cy="14" r="3" fill="#2E4B32"/>
+        <circle cx="28" cy="14" r="3" fill="#C68A32"/>
+        <circle cx="20" cy="29" r="3" fill="#3A7A78"/>
+        <path d="M12 14L20 29M28 14L20 29M12 14L28 14" stroke="#17231B" stroke-width="1.2"/>
+      </svg>
+      <div>Sanjhi Samasya<small>SIH 2026 · PS 26043</small></div>
+    </div>
+    <nav class="links">
+      <a href="#about">The Problem</a>
+      <a href="#how">How It Works</a>
+      <a href="#challenges">Live Challenges</a>
+      <a href="#submit">Submit</a>
+      <a href="#partners">Partners</a>
+    </nav>
+    <div class="auth-actions">
+      <div id="loggedOutActions" style="display:flex; gap:10px;">
+        <a class="login-btn" href="login.html">Log in</a>
+        <a class="login-btn" href="register.html">Sign up</a>
+      </div>
+      <div id="loggedInActions" style="display:none; align-items:center; gap:12px;">
+        <div class="user-chip">
+          <div class="user-avatar" id="userAvatar">C</div>
+          <div class="user-name" id="userName">—<small></small></div>
+        </div>
+        <button class="logout-btn" id="logoutBtn">Log out</button>
+      </div>
+      <button class="nav-cta" id="reportBtn">Report a Challenge</button>
+    </div>
+    <button class="burger" id="burgerBtn" aria-label="Open menu">☰</button>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Govt. of Jharkhand · Dept. of Higher &amp; Technical Education</p>
+        <h1>Every local problem has a <em>solver</em> somewhere nearby.</h1>
+        <p class="lede">Sanjhi Samasya is a digital commons where citizens surface real problems from their villages and wards, and universities and industry step in to co-build the fix — turning scattered complaints into tracked, funded, solvable projects.</p>
+        <div class="hero-actions">
+          <a href="#submit" class="btn btn-primary">Report a challenge →</a>
+          <a href="#challenges" class="btn btn-outline">Browse open challenges</a>
+        </div>
+        <div class="hero-meta">
+          <div><b id="statTotal">—</b>challenges logged</div>
+          <div><b>142</b>college teams active</div>
+          <div><b>61</b>industry partners</div>
+          <div><b>24</b>districts covered</div>
+        </div>
+      </div>
+      <div class="thread-card">
+        <p class="cap">How three sides connect</p>
+        <svg class="thread-svg" viewBox="0 0 320 120" fill="none">
+          <path d="M40 30 C 100 30, 100 90, 160 90 C 220 90, 220 30, 280 30" stroke="#C68A32" stroke-width="1.4" stroke-dasharray="1 7" stroke-linecap="round"/>
+          <circle cx="40" cy="30" r="16" fill="#2E4B32"/>
+          <circle cx="160" cy="90" r="16" fill="#A6472A"/>
+          <circle cx="280" cy="30" r="16" fill="#3A7A78"/>
+          <text x="40" y="35" text-anchor="middle" font-size="13" fill="#F3ECD8" font-family="JetBrains Mono">C</text>
+          <text x="160" y="95" text-anchor="middle" font-size="13" fill="#F3ECD8" font-family="JetBrains Mono">U</text>
+          <text x="280" y="35" text-anchor="middle" font-size="13" fill="#F3ECD8" font-family="JetBrains Mono">I</text>
+        </svg>
+        <div class="thread-row">
+          <div><div class="node-label">Community</div><div class="node-sub">reports the problem</div></div>
+          <div><div class="node-label">University</div><div class="node-sub">designs the solution</div></div>
+          <div><div class="node-label">Industry</div><div class="node-sub">funds &amp; deploys</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="weave dark"></div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div>
+      <p class="eyebrow">Background</p>
+      <h2>Problems are known locally. Solutions stay local too — that's the gap.</h2>
+    </div>
+    <div class="about-body">
+      <p>Communities across Jharkhand run into everyday obstacles in education, healthcare, agriculture, water management, sanitation, environment and rural infrastructure. Most never leave the village or ward they occur in — there's no shared place to log them, no bridge to the students and researchers building relevant solutions, and no structured way for industry to back a fix once it's ready.</p>
+      <p>Sanjhi Samasya ("shared problem") closes that loop: a citizen posts a challenge, university teams pick it up as a project, and industry partners fund the pilot to take it from prototype to deployment.</p>
+      <div class="domain-tags">
+        <span>Education</span><span>Healthcare</span><span>Agriculture</span>
+        <span>Water Mgmt.</span><span>Sanitation</span><span>Environment</span><span>Rural Infra.</span>
+      </div>
+      <div class="stat-strip">
+        <div><b>7</b><span>problem domains tracked</span></div>
+        <div><b>24</b><span>districts onboarded</span></div>
+        <div><b>142</b><span>university teams matched</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="weave"></div>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">The pipeline</p>
+      <h2>From a complaint at the block office to a working fix in the field.</h2>
+      <p>Four stages, each with an owner, so a challenge never stalls waiting on the "next person."</p>
+    </div>
+    <div class="steps">
+      <div class="step"><span class="num">01 — Report</span><h3>Post the challenge</h3><p>A citizen or field officer logs the problem with location and details.</p></div>
+      <div class="step"><span class="num">02 — Match</span><h3>Route to a team</h3><p>The platform surfaces it to relevant university departments by domain and distance.</p></div>
+      <div class="step"><span class="num">03 — Build</span><h3>Co-design a fix</h3><p>Student and faculty teams design a solution; industry partners can fund it.</p></div>
+      <div class="step"><span class="num">04 — Deploy</span><h3>Close the loop</h3><p>The pilot goes back to the community that reported it, outcomes tracked publicly.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CATEGORIES ===== -->
+<section class="cats">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">By domain</p>
+      <h2>Where the challenges are coming from</h2>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-card"><div class="ic">📘</div><h3>Education</h3><p>Access, dropout risk, digital learning gaps</p></div>
+      <div class="cat-card"><div class="ic">🩺</div><h3>Health</h3><p>Last-mile clinics, maternal care, referrals</p></div>
+      <div class="cat-card"><div class="ic">🌾</div><h3>Agriculture</h3><p>Crop advisory, storage loss, market access</p></div>
+      <div class="cat-card"><div class="ic">💧</div><h3>Water</h3><p>Groundwater, irrigation, supply reliability</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LIVE CHALLENGES ===== -->
+<section id="challenges">
+  <div class="wrap">
+    <div class="feed-top">
+      <div class="section-head" style="margin-bottom:0;">
+        <p class="eyebrow">Live feed</p>
+        <h2>Open challenges right now</h2>
+      </div>
+      <div class="filters" id="filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="Education">Education</button>
+        <button class="filter-btn" data-filter="Water">Water</button>
+        <button class="filter-btn" data-filter="Agriculture">Agriculture</button>
+        <button class="filter-btn" data-filter="Health">Health</button>
+      </div>
+    </div>
+    <div class="feed-grid" id="feedGrid"><p style="color:var(--ink-soft); font-size:14px;">Loading challenges…</p></div>
+  </div>
+</section>
+
+<div class="weave"></div>
+
+<!-- ===== SUBMIT ===== -->
+<section class="submit" id="submit">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Report</p>
+      <h2>Have a problem worth solving? Put it on the map.</h2>
+    </div>
+    <div class="submit-panel">
+      <div class="submit-side">
+        <div>
+          <h3>What happens after you submit</h3>
+          <p>Your report goes straight into the district queue where matched university teams review it within days.</p>
+          <ul>
+            <li>Visible to every partner college in your district</li>
+            <li>You get a tracking ID to follow progress</li>
+            <li>Industry partners can co-fund a solution once scoped</li>
+            <li>You're notified when a team picks it up</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="gate-note" id="gateNote" style="display:none; margin:24px 38px 0;">
+          You need to be signed in to report a challenge. <a href="login.html">Log in</a> or <a href="register.html">create an account</a> — it takes a minute.
+        </div>
+        <form id="challengeForm">
+          <div class="field-row">
+            <div class="field"><label for="title">Challenge title</label><input id="title" type="text" placeholder="e.g. No safe drinking water at Block school" required></div>
+            <div class="field"><label for="domain">Domain</label>
+              <select id="domain" required>
+                <option value="">Select domain</option>
+                <option value="Education">Education</option><option value="Health">Healthcare</option>
+                <option value="Agriculture">Agriculture</option><option value="Water">Water Management</option>
+                <option value="Water">Sanitation</option><option value="Water">Environment</option>
+                <option value="Education">Rural Infrastructure</option>
+              </select>
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field"><label for="district">District</label><input id="district" type="text" placeholder="e.g. Gumla" required></div>
+            <div class="field"><label>Reporting as</label><input type="text" id="reporterDisplay" disabled value="Not signed in"></div>
+          </div>
+          <div class="field"><label for="details">Describe the problem</label><textarea id="details" rows="4" placeholder="What's happening, how long, who's affected..." required></textarea></div>
+          <div class="error-msg" id="submitError"></div>
+          <button type="submit" class="submit-btn" id="submitBtn">Submit challenge</button>
+        </form>
+        <div class="confirm" id="confirmPanel">
+          <div class="tick">✓</div>
+          <h3>Challenge logged.</h3>
+          <p>Tracking ID <b id="trackId"></b> — you'll see it appear in the live feed above.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PARTNERS ===== -->
+<section id="partners">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Who's building</p>
+      <h2>Universities and industry already on board</h2>
+    </div>
+    <div class="partners-grid">
+      <div class="partner-card"><span class="tag">University</span><h3>BIT Mesra</h3><p>Leading water-management and IoT pilots across Ranchi district blocks.</p></div>
+      <div class="partner-card"><span class="tag">University</span><h3>Central University of Jharkhand</h3><p>Running agri-advisory and rural-education field studies with three districts.</p></div>
+      <div class="partner-card"><span class="tag">Industry</span><h3>Tata Steel Foundation</h3><p>Co-funding sanitation and environment pilots near mining belts.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">Sanjhi Samasya</div>
+        <p>A crowdsourcing and collaboration platform connecting citizens, universities and industry to solve Jharkhand's everyday challenges together.</p>
+      </div>
+      <div>
+        <h4>Platform</h4>
+        <ul><li><a href="#about">The Problem</a></li><li><a href="#how">How It Works</a></li><li><a href="#challenges">Live Challenges</a></li><li><a href="#submit">Report a Challenge</a></li></ul>
+      </div>
+      <div>
+        <h4>Account</h4>
+        <ul><li><a href="login.html">Log in</a></li><li><a href="register.html">Sign up</a></li></ul>
+      </div>
+      <div>
+        <h4>SIH 2026</h4>
+        <ul><li>Problem ID: 26043</li><li>Category: Software</li><li>Theme: Smart Education</li><li>Org: Govt. of Jharkhand</li></ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Sanjhi Samasya — built for Smart India Hackathon</span>
+      <span>Dept. of Higher &amp; Technical Education, Govt. of Jharkhand</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/api.js"></script>
+<script>
+  const burger = document.getElementById('burgerBtn');
+  const links = document.querySelector('nav.links');
+  burger.addEventListener('click', () => {
+    const open = links.style.display === 'flex';
+    links.style.display = open ? 'none' : 'flex';
+    links.style.cssText += 'flex-direction:column; position:absolute; top:64px; right:24px; background:#FBF8F0; border:1px solid #E9DFC4; padding:18px 22px; border-radius:8px; gap:16px; box-shadow:0 8px 24px rgba(0,0,0,0.12);';
+  });
+
+  let activeFilter = 'all';
+  let cachedChallenges = [];
+
+  function badgeClass(status){ return status; }
+  function badgeLabel(status){
+    if(status==='open') return 'Open';
+    if(status==='progress') return 'In Progress';
+    return 'Solved';
+  }
+
+  async function loadChallenges(){
+    const grid = document.getElementById('feedGrid');
+    try{
+      const domainParam = activeFilter === 'all' ? '' : `?domain=${encodeURIComponent(activeFilter)}`;
+      const data = await apiFetch(`/challenges${domainParam}`);
+      cachedChallenges = data.challenges;
+      document.getElementById('statTotal').textContent = cachedChallenges.length >= 6 ? cachedChallenges.length + '+' : cachedChallenges.length;
+      renderFeed();
+    }catch(err){
+      grid.innerHTML = `<p style="color:var(--rust); font-size:14px;">Couldn't load challenges: ${err.message}. Is the backend server running?</p>`;
+    }
+  }
+
+  function renderFeed(){
+    const grid = document.getElementById('feedGrid');
+    grid.innerHTML = '';
+    if(cachedChallenges.length === 0){
+      grid.innerHTML = '<p style="color:var(--ink-soft); font-size:14px;">No challenges in this category yet — be the first to report one.</p>';
+      return;
+    }
+    const user = getUser();
+    cachedChallenges.forEach(c => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <div class="card-top">
+          <h3>${c.title}</h3>
+          <span class="badge ${badgeClass(c.status)}">${badgeLabel(c.status)}</span>
+        </div>
+        <p class="desc">${c.description}</p>
+        <div class="card-meta">
+          <span>${c.id} · ${c.district}</span>
+          <button class="upvote" data-id="${c.id}">▲ <span>${c.votes}</span></button>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+    document.querySelectorAll('.upvote').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        if(!getUser()){ window.location.href = 'login.html'; return; }
+        const id = btn.getAttribute('data-id');
+        btn.disabled = true;
+        try{
+          const res = await apiFetch(`/challenges/${id}/upvote`, { method:'POST' });
+          btn.querySelector('span').textContent = res.votes;
+        }catch(err){
+          alert(err.message);
+        }finally{
+          btn.disabled = false;
+        }
+      });
+    });
+  }
+
+  document.getElementById('filters').addEventListener('click', (e) => {
+    if(e.target.classList.contains('filter-btn')){
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      activeFilter = e.target.getAttribute('data-filter');
+      loadChallenges();
+    }
+  });
+
+  document.getElementById('reportBtn').addEventListener('click', () => {
+    document.getElementById('submit').scrollIntoView({behavior:'smooth'});
+  });
+
+  function applyAuthGateToForm(){
+    const user = getUser();
+    const gateNote = document.getElementById('gateNote');
+    const submitBtn = document.getElementById('submitBtn');
+    const reporterDisplay = document.getElementById('reporterDisplay');
+    if(user){
+      gateNote.style.display = 'none';
+      submitBtn.disabled = false;
+      reporterDisplay.value = user.name + ' (' + user.role + ')';
+    } else {
+      gateNote.style.display = 'block';
+      submitBtn.disabled = true;
+      reporterDisplay.value = 'Not signed in';
+    }
+  }
+
+  const form = document.getElementById('challengeForm');
+  const submitError = document.getElementById('submitError');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    submitError.classList.remove('show');
+    if(!getUser()){ window.location.href = 'login.html'; return; }
+
+    const title = document.getElementById('title').value.trim();
+    const domain = document.getElementById('domain').value;
+    const district = document.getElementById('district').value.trim();
+    const details = document.getElementById('details').value.trim();
+    if(!title || !domain || !district || !details) return;
+
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = 'Submitting…';
+    try{
+      const res = await apiFetch('/challenges', {
+        method:'POST',
+        body: JSON.stringify({ title, domain, district, description: details })
+      });
+      document.getElementById('trackId').textContent = res.challenge.id;
+      form.style.display = 'none';
+      document.getElementById('confirmPanel').classList.add('show');
+      activeFilter = 'all';
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
+      loadChallenges();
+      document.getElementById('challenges').scrollIntoView({behavior:'smooth'});
+    }catch(err){
+      submitError.textContent = err.message;
+      submitError.classList.add('show');
+    }finally{
+      btn.disabled = false;
+      btn.textContent = 'Submit challenge';
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    applyAuthGateToForm();
+    loadChallenges();
+  });
+</script>
+</body>
+</html>

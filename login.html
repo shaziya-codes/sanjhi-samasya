@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign in — Sanjhi Samasya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="auth-body">
+
+  <div class="auth-side">
+    <div class="brand">
+      <svg width="30" height="30" viewBox="0 0 40 40" fill="none">
+        <circle cx="20" cy="20" r="19" stroke="#A6472A" stroke-width="1.5"/>
+        <circle cx="12" cy="14" r="3" fill="#2E4B32"/>
+        <circle cx="28" cy="14" r="3" fill="#C68A32"/>
+        <circle cx="20" cy="29" r="3" fill="#3A7A78"/>
+        <path d="M12 14L20 29M28 14L20 29M12 14L28 14" stroke="#F3ECD8" stroke-width="1.2"/>
+      </svg>
+      <div>Sanjhi Samasya<small>SIH 2026 · PS 26043</small></div>
+    </div>
+
+    <div class="auth-side-body">
+      <p class="eyebrow" style="color:var(--ochre-light);">Welcome back</p>
+      <h1>Sign in to track, match and <em>solve</em> real problems.</h1>
+      <p>Citizens, university teams and industry partners all use the same account — your role decides what you can do once you're in.</p>
+      <svg class="thread-svg small" viewBox="0 0 320 100" fill="none" style="margin-top:34px;">
+        <path d="M30 25 C 90 25, 90 80, 160 80 C 230 80, 230 25, 290 25" stroke="#C68A32" stroke-width="1.4" stroke-dasharray="1 7" stroke-linecap="round"/>
+        <circle cx="30" cy="25" r="14" fill="#2E4B32"/>
+        <circle cx="160" cy="80" r="14" fill="#A6472A"/>
+        <circle cx="290" cy="25" r="14" fill="#3A7A78"/>
+      </svg>
+    </div>
+
+    <div class="auth-side-foot">DEPT. OF HIGHER &amp; TECHNICAL EDUCATION · GOVT. OF JHARKHAND</div>
+  </div>
+
+  <div class="auth-panel">
+    <div class="auth-card">
+      <p class="eyebrow">Sign in</p>
+      <h2>Access your account</h2>
+      <p class="sub">Enter the credentials you registered with.</p>
+
+      <div class="error-msg" id="errorMsg"></div>
+      <div class="success-msg" id="successMsg"></div>
+
+      <form id="loginForm">
+        <div class="field">
+          <label for="userId">User ID</label>
+          <input id="userId" type="text" placeholder="e.g. demo@jharkhand.gov.in" autocomplete="username" required>
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <div class="pass-wrap">
+            <input id="password" type="password" placeholder="Enter your password" autocomplete="current-password" required>
+            <button type="button" id="togglePass">SHOW</button>
+          </div>
+        </div>
+        <button type="submit" class="submit-btn" id="loginBtn">Sign in</button>
+      </form>
+
+      <div class="demo-box">
+        <b>Demo account:</b> User ID <b>demo@jharkhand.gov.in</b> · Password <b>demo123</b> — run <code>npm run seed</code> on the backend first to create it.
+      </div>
+
+      <p class="bottom-line">New here? <a href="register.html">Create an account</a></p>
+      <p class="bottom-line"><a href="index.html">← Back to home</a></p>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script>
+    document.getElementById('togglePass').addEventListener('click', () => {
+      const input = document.getElementById('password');
+      const btn = document.getElementById('togglePass');
+      const isPass = input.type === 'password';
+      input.type = isPass ? 'text' : 'password';
+      btn.textContent = isPass ? 'HIDE' : 'SHOW';
+    });
+
+    const errorMsg = document.getElementById('errorMsg');
+    const successMsg = document.getElementById('successMsg');
+
+    // If a registration just happened, show a welcome note.
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('registered') === '1') {
+      successMsg.textContent = 'Account created — sign in below.';
+      successMsg.classList.add('show');
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorMsg.classList.remove('show');
+      const userId = document.getElementById('userId').value.trim();
+      const password = document.getElementById('password').value;
+      const btn = document.getElementById('loginBtn');
+
+      btn.disabled = true;
+      btn.textContent = 'Signing in…';
+      try {
+        const data = await apiFetch('/auth/login', {
+          method: 'POST',
+          body: JSON.stringify({ userId, password })
+        });
+        setSession(data.token, data.user);
+        window.location.href = 'index.html';
+      } catch (err) {
+        errorMsg.textContent = err.message;
+        errorMsg.classList.add('show');
+        btn.disabled = false;
+        btn.textContent = 'Sign in';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create account — Sanjhi Samasya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="auth-body">
+
+  <div class="auth-side">
+    <div class="brand">
+      <svg width="30" height="30" viewBox="0 0 40 40" fill="none">
+        <circle cx="20" cy="20" r="19" stroke="#A6472A" stroke-width="1.5"/>
+        <circle cx="12" cy="14" r="3" fill="#2E4B32"/>
+        <circle cx="28" cy="14" r="3" fill="#C68A32"/>
+        <circle cx="20" cy="29" r="3" fill="#3A7A78"/>
+        <path d="M12 14L20 29M28 14L20 29M12 14L28 14" stroke="#F3ECD8" stroke-width="1.2"/>
+      </svg>
+      <div>Sanjhi Samasya<small>SIH 2026 · PS 26043</small></div>
+    </div>
+
+    <div class="auth-side-body">
+      <p class="eyebrow" style="color:var(--ochre-light);">Join in</p>
+      <h1>One account, <em>three</em> ways to help.</h1>
+      <p>Sign up as a citizen to report challenges, a university to pick up projects, or an industry partner to fund and deploy fixes.</p>
+      <div class="node-row" style="display:flex; gap:24px; margin-top:30px;">
+        <div><div class="node-label">Community</div><div class="node-sub">reports &amp; tracks</div></div>
+        <div><div class="node-label">University</div><div class="node-sub">matches &amp; builds</div></div>
+        <div><div class="node-label">Industry</div><div class="node-sub">funds &amp; deploys</div></div>
+      </div>
+    </div>
+
+    <div class="auth-side-foot">DEPT. OF HIGHER &amp; TECHNICAL EDUCATION · GOVT. OF JHARKHAND</div>
+  </div>
+
+  <div class="auth-panel">
+    <div class="auth-card">
+      <p class="eyebrow">Sign up</p>
+      <h2>Create your account</h2>
+      <p class="sub">Pick the role that fits you — you can't change this later without contacting an admin.</p>
+
+      <div class="error-msg" id="errorMsg"></div>
+
+      <div class="role-toggle" id="roleToggle">
+        <button type="button" class="active" data-role="citizen">Citizen</button>
+        <button type="button" data-role="university">University</button>
+        <button type="button" data-role="industry">Industry</button>
+      </div>
+
+      <form id="registerForm">
+        <div class="field">
+          <label for="name">Full name</label>
+          <input id="name" type="text" placeholder="e.g. Anjali Kumari" required>
+        </div>
+        <div class="field">
+          <label for="userId">User ID (email or username)</label>
+          <input id="userId" type="text" placeholder="you@example.com" autocomplete="username" required>
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <div class="pass-wrap">
+            <input id="password" type="password" placeholder="At least 6 characters" autocomplete="new-password" required minlength="6">
+            <button type="button" id="togglePass">SHOW</button>
+          </div>
+        </div>
+        <button type="submit" class="submit-btn" id="registerBtn">Create account</button>
+      </form>
+
+      <p class="bottom-line">Already have an account? <a href="login.html">Sign in</a></p>
+      <p class="bottom-line"><a href="index.html">← Back to home</a></p>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script>
+    let selectedRole = 'citizen';
+    document.getElementById('roleToggle').addEventListener('click', (e) => {
+      if (e.target.tagName === 'BUTTON') {
+        document.querySelectorAll('.role-toggle button').forEach(b => b.classList.remove('active'));
+        e.target.classList.add('active');
+        selectedRole = e.target.getAttribute('data-role');
+      }
+    });
+
+    document.getElementById('togglePass').addEventListener('click', () => {
+      const input = document.getElementById('password');
+      const btn = document.getElementById('togglePass');
+      const isPass = input.type === 'password';
+      input.type = isPass ? 'text' : 'password';
+      btn.textContent = isPass ? 'HIDE' : 'SHOW';
+    });
+
+    const errorMsg = document.getElementById('errorMsg');
+
+    document.getElementById('registerForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorMsg.classList.remove('show');
+      const name = document.getElementById('name').value.trim();
+      const userId = document.getElementById('userId').value.trim();
+      const password = document.getElementById('password').value;
+      const btn = document.getElementById('registerBtn');
+
+      btn.disabled = true;
+      btn.textContent = 'Creating account…';
+      try {
+        await apiFetch('/auth/register', {
+          method: 'POST',
+          body: JSON.stringify({ name, userId, password, role: selectedRole })
+        });
+        window.location.href = 'login.html?registered=1';
+      } catch (err) {
+        errorMsg.textContent = err.message;
+        errorMsg.classList.add('show');
+        btn.disabled = false;
+        btn.textContent = 'Create account';
+      }
+    });
+  </script>
+</body>
+</html>
