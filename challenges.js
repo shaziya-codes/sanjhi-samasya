@@ -1,7 +1,7 @@
 // routes/challenges.js
 const express = require('express');
 const db = require('./database');
-const { requireAuth, attachUserIfPresent } = require('../middleware/auth');
+const { requireAuth, attachUserIfPresent } = require('./auth');
 
 const router = express.Router();
 
