@@ -7,7 +7,7 @@ const cors = require('cors');
 require('./database'); // ensures tables exist on boot
 
 const authRoutes = require('./auth');
-const challengeRoutes = require('./routes/challenges');
+const challengeRoutes = require('./challenges');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
